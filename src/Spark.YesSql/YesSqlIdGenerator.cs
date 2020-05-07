@@ -1,9 +1,8 @@
 ﻿using System;
 using Hl7.Fhir.Model;
 using Spark.Core;
-using YesSql.Core.Services;
-using YesSql.Core.Data;
 using Spark.YesSql.Models;
+using YesSql;
 
 namespace Spark.YesSql
 {
