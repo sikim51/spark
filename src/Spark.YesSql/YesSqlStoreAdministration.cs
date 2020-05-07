@@ -1,6 +1,8 @@
 ﻿using System;
 using Spark.Engine.Interfaces;
+using Spark.YesSql.Indexes;
 using YesSql;
+using YesSql.Sql;
 
 namespace Spark.YesSql
 {
@@ -24,12 +26,14 @@ namespace Spark.YesSql
             {
                 connection.Open();
 
-                using (var transaction = connection.BeginTransaction(store.Configuration.IsolationLevel))
+                using (var transaction = connection.BeginTransaction(_store.Configuration.IsolationLevel))
                 {
-                    new SchemaBuilder(store.Configuration, transaction)
-                        .CreateReduceIndexTable(nameof(ArticleByWord), table => table
-                            .Column<int>("Count")
-                            .Column<string>("Word")
+                    new SchemaBuilder(_store.Configuration, transaction)
+                        .CreateMapIndexTable(nameof(EntryByKey), table => table
+                            .Column<string>(nameof(EntryByKey.Base))
+                            .Column<string>(nameof(EntryByKey.ResourceId))
+                            .Column<string>(nameof(EntryByKey.TypeName))
+                            .Column<string>(nameof(EntryByKey.VersionId))
                         );
 
                     transaction.Commit();

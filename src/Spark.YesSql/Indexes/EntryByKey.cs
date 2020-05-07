@@ -1,5 +1,5 @@
 ﻿using System;
-using YesSql.Core.Indexes;
+using YesSql.Indexes;
 
 namespace Spark.YesSql.Indexes
 {
