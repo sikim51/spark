@@ -12,11 +12,10 @@ using System.Linq;
 
 using System.Text.RegularExpressions;
 using F = Hl7.Fhir.Model;
-using MongoDB.Driver;
-using MongoDB.Bson;
-using Spark.Search.Mongo;
+using Spark.Engine.Search.Model;
+using Spark.Engin.Search.Utils;
 
-namespace Spark.Mongo.Search.Common
+namespace Spark.Engine.Search.Common
 {
     public class Argument
     {
@@ -38,7 +37,9 @@ namespace Spark.Mongo.Search.Common
         }
         private static string FieldToInternalField(string field)
         {
-            if (Config.Equal(field, UniversalField.ID)) field = InternalField.JUSTID;
+            if (String.Equals(field, UniversalField.ID,StringComparison.OrdinalIgnoreCase))
+                field = IndexFieldNames.JUSTID;
+
             return field;
         }
     }

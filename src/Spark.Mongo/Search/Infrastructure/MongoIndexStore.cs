@@ -6,6 +6,7 @@ using Spark.Store.Mongo;
 using Spark.Engine.Model;
 using Spark.Mongo.Search.Indexer;
 using Spark.Engine.Store.Interfaces;
+using Spark.Engine.Search.Model;
 
 namespace Spark.Mongo.Search.Common
 {
@@ -32,27 +33,10 @@ namespace Spark.Mongo.Search.Common
             }
         }
 
-        public void Save(BsonDocument document)
-        {
-            try
-            {
-                string keyvalue = document.GetValue(InternalField.ID).ToString();
-                var query = Builders<BsonDocument>.Filter.Eq(InternalField.ID, keyvalue);
-
-                // todo: should use Update: collection.Update();
-                Collection.DeleteMany(query);
-                Collection.InsertOne(document);
-            }
-            catch (Exception exception)
-            {
-                throw exception;
-            }
-        }
-
         public void Delete(Entry entry)
         {
             string id = entry.Key.WithoutVersion().ToOperationPath();
-            var query = Builders<BsonDocument>.Filter.Eq(InternalField.ID, id);
+            var query = Builders<BsonDocument>.Filter.Eq(IndexFieldNames.ID, id);
             Collection.DeleteMany(query);
         }
 
@@ -61,5 +45,22 @@ namespace Spark.Mongo.Search.Common
             Collection.DeleteMany(Builders<BsonDocument>.Filter.Empty);
         }
 
+        public void Save<T>(T document)
+        {
+            var docu = document as BsonDocument;
+            try
+            {
+                string keyvalue = docu.GetValue(IndexFieldNames.ID).ToString();
+                var query = Builders<BsonDocument>.Filter.Eq(IndexFieldNames.ID, keyvalue);
+
+                // todo: should use Update: collection.Update();
+                Collection.DeleteMany(query);
+                Collection.InsertOne(docu);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using Spark.Engine.Core;
-using YesSql.Core.Indexes;
+using YesSql.Indexes;
 
 namespace Spark.YesSql.Indexes
 {

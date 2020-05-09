@@ -11,8 +11,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Hl7.Fhir.Model;
 using Spark.Engine.Core;
+using Spark.Engine.Search.Model;
 
-namespace Spark.Mongo.Search.Common
+namespace Spark.Engine.Search.Common
 {
     /* 
     Ik heb deze class losgetrokken van SearchParamDefinition,
@@ -26,7 +27,7 @@ namespace Spark.Mongo.Search.Common
         public string Resource { get; set; }
         public string ParamName { get; set; }
         public string Description { get; set; }
-        public SearchParamType ParamType { get; set; }
+        public Hl7.Fhir.Model.SearchParamType ParamType { get; set; }
         public ElementQuery Query { get; set; }
 
         public bool Matches(object x)
@@ -102,7 +103,7 @@ namespace Spark.Mongo.Search.Common
 
         public Argument DetermineUniversalArgument(string field)
         {
-            if (InternalField.All.Contains(field))
+            if (IndexFieldNames.All.Contains(field))
                 return new Argument();
 
             switch (field.ToLower())

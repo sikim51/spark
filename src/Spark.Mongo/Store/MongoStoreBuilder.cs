@@ -1,5 +1,6 @@
 ﻿using Spark.Core;
 using Spark.Engine.Core;
+using Spark.Engine.Search.Common;
 using Spark.Engine.Store.Interfaces;
 using Spark.Mongo.Search.Common;
 using Spark.Mongo.Search.Indexer;

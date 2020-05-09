@@ -30,4 +30,9 @@
         <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.7" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Search\Indexer\" />
+      <Folder Include="Search\Common\" />
+      <Folder Include="Search\Utils\" />
+    </ItemGroup>
 </Project>

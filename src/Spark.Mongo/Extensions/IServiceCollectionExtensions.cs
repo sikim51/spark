@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Spark.Core;
 using Spark.Engine;
 using Spark.Engine.Interfaces;
+using Spark.Engine.Search.Common;
 using Spark.Engine.Store.Interfaces;
 using Spark.Mongo.Search.Common;
 using Spark.Mongo.Search.Indexer;

@@ -31,7 +31,7 @@ namespace Spark.YesSql
 
         private string Next(string typeName)
         {
-            _session.GetAsync<Counter>();
+            return null;   
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using Spark.Engine.Model;
+using Spark.Engine.Search.Model;
 using Spark.Mongo.Search.Common;
 using Spark.Search;
 using System;
@@ -35,7 +36,7 @@ namespace Spark.Mongo.Search.Indexer
         {
             //Add the real values (not contained) to a document and add that to the result.
             List<IndexValue> notNestedValues = indexValue.Values.Where(exp => (exp is IndexValue) && ((IndexValue)exp).Name != "contained").Select(exp => (IndexValue)exp).ToList();
-            var doc = new BsonDocument(new BsonElement(InternalField.LEVEL, level));
+            var doc = new BsonDocument(new BsonElement(IndexFieldNames.LEVEL, level));
             doc.AddRange(notNestedValues.Select(iv => IndexValueToElement(iv)));
             result.Add(doc);
 

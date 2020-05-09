@@ -9,7 +9,7 @@ namespace Spark.YesSql
     {
         public T GetStore<T>()
         {
-            re
+            return default(T);
         }
     }
 }

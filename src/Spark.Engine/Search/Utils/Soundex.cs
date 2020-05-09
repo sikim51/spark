@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Spark.Search.Mongo
+namespace Spark.Engin.Search.Utils
 {
     public static class Soundex
     {
