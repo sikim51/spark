@@ -338,5 +338,8 @@ namespace Spark.Engine.Search
         }
 
         protected abstract List<string> OnCollectKeys(string resourceType, IEnumerable<Criterium> criteria, int level = 0);
+
+        public abstract SearchResults GetReverseIncludes(IList<IKey> keys, IList<string> revIncludes);
+
     }
 }

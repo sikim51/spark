@@ -11,13 +11,14 @@ namespace Spark.Lucene
     public class LuceneIndexStore : IIndexStore
     {
         private readonly IndexWriter _indexWriter;
-        private readonly IndexReader _indexReader;
 
         public LuceneIndexStore(IndexWriter indexWriter, IndexReader indexReader)
         {
             _indexWriter = indexWriter;
-            _indexReader = indexReader;
+            IndexReader = indexReader;
         }
+
+        public IndexReader IndexReader { get; }
 
         public void Clean()
         {

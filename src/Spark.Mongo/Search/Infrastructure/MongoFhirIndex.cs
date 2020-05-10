@@ -40,7 +40,7 @@ namespace Spark.Mongo.Search.Common
             }
         }
 
-         public SearchResults Search(string resource, SearchParams searchCommand)
+        public SearchResults Search(string resource, SearchParams searchCommand)
         {
             return _searcher.Search(resource, searchCommand);
         }

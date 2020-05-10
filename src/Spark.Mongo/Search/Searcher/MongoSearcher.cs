@@ -82,7 +82,6 @@ namespace Spark.Search.Mongo
 
         protected override List<string> OnCollectKeys(string resourceType, IEnumerable<Criterium> criteria, int level = 0)
         {
-
             var keys = CollectKeys(resourceType, criteria, null, level);
             return keys.Select(k => k.ToString()).ToList();
         }
@@ -181,9 +180,9 @@ namespace Spark.Search.Mongo
         }
         
 
-        public SearchResults GetReverseIncludes(IList<IKey> keys, IList<string> revIncludes)
+        public override SearchResults GetReverseIncludes(IList<IKey> keys, IList<string> revIncludes)
         {
-            BsonValue[] internal_ids = keys.Select(k => BsonString.Create(String.Format("{0}/{1}", k.TypeName, k.ResourceId))).ToArray();
+            BsonValue[] internal_ids = keys.Select(k => BsonString.Create($"{k.TypeName}/{k.ResourceId}")).ToArray();
 
             SearchResults results = new SearchResults();
 
